@@ -32,16 +32,6 @@
             @endforeach
          </select>
     </div>
-    <!-- Category Dropdown -->
-    {{-- <div class="form-group">
-        <label for="category_id">Select Category</label>
-        <select name="category_id" class="form-control"  >
-            <option value="">Select Category</option>
-            @foreach($categories as $category)
-                <option value="{{ $category->id }}">{{ $category->name }}</option>
-            @endforeach
-        </select>
-    </div> --}}
 
     <button type="submit" class="btn btn-primary mt-4">Add Product</button>
 </form>

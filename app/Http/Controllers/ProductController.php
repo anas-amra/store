@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function create()
     {
         $categories= Category::all();
-        return view('admin.products.create',compact('categories'));
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -48,7 +48,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories= Category::all();
-        return view('admin.products.edit', compact('product','categories'));
+        return view('admin.products.edit', compact('categories','product'));
     }
 
     /**

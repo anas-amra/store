@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FrontController;
 use App\Models\Product;
 
 /*
@@ -40,3 +41,5 @@ Route::get('/admin/categories/{category}/edit',[CategoryController::class,'edit'
 Route::put('/admin/categories/{category}',[CategoryController::class,'update'])->name('admin.categories.update');
 Route::delete('/admin/categories/{category}',[CategoryController::class,'destroy'])->name('admin.categories.destroy');
 
+//frontend routes
+Route::get('home',[FrontController::class,'index'])->name('home.index');

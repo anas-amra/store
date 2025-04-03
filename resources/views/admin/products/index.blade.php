@@ -2,7 +2,6 @@
 @section('titletab','products')
 @section('titlepage','products')
 
-
 @section('content')
     @if (session('success'))
         <div class="alert alert-success">
@@ -20,7 +19,7 @@
                     <th>Product Name</th>
                     <th>Price</th>
                     <th>Quantity</th>
-                    <th>Category_id</th>
+                    <th>Category</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -31,7 +30,7 @@
                     <td>{{$product->name}}</td>
                     <td>{{$product->price}}</td>
                     <td>{{$product->quantity}}</td>
-                    <td>{{$product->category_id}}</td>
+                    <td>{{$product->category->name}}</td>
                     <td>
                         <a href="{{route('admin.products.edit',$product)}}" class="btn btn-info btn-sm">Edit</a>
                         <form action="{{route('admin.products.destroy',$product)}}" method="POST" onsubmit="return confirm('Are you sure?');" style="display: inline;">
@@ -47,5 +46,7 @@
             </tbody>
         </table>
 
-
+        <div class="mt-4">
+            {{ $products->links() }}
+        </div>
 @endsection

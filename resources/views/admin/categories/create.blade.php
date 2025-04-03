@@ -11,7 +11,7 @@
         <label for="name">Category Name</label>
         <input type="text" class="form-control" name="name"  >
     </div>
-<br><br>    
+<br><br>
     <button type="submit" class="btn btn-primary">Add Category</button>
 </form>
 

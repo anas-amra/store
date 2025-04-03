@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Admin\Product;
 
 class FrontController extends Controller
 {
@@ -12,4 +12,6 @@ class FrontController extends Controller
         $products=Product::all();
         return view('home.index',compact('products'));
     }
+
 }
+

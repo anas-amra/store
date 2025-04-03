@@ -2,18 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Models\Category;
+use App\Models\Admin\Product;
+use App\Models\Admin\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $products= Product::all();
+        // $products= Product::all();
+        $products= Product::where('user_id',Auth::id())->paginate(2); // Pagination 2 products per page
         return view('admin.products.index', compact('products'));
     }
 
@@ -39,7 +45,14 @@ class ProductController extends Controller
             'category_id' =>'required'
 
         ]);
-        $product = Product::create($request->all());
+        $product = Product::create([
+                'user_id' =>Auth::id(),
+                'name'=> $request->name,
+                'price'=> $request->price,
+                'quantity'=> $request->quantity,
+                'description'=> $request->description,
+                'category_id'=> $request->category_id
+            ]);
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully');
     }
     /**

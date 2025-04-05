@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Admin\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth; // Import the Auth facade
 
 class CategoryController extends Controller
 {
@@ -17,7 +18,7 @@ class CategoryController extends Controller
     public function index()
     {
         // $categories=Category::all();
-        $categories=Category::paginate(2);
+        $categories=Category::where('user_id',Auth::id())->paginate(2);
         return view('admin.categories.index',compact('categories'));
     }
 
@@ -38,7 +39,10 @@ class CategoryController extends Controller
             'name'=>'required'
         ]);
 
-        Category::create($request->all());
+        Category::create([
+            "user_id"=>Auth::id(),  // Assuming user_id is the foreign key in your categories table
+            "name"=>$request->name,
+        ]);
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
     }
 
